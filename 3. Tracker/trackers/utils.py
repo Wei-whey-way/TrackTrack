@@ -175,7 +175,7 @@ def associate(cost, match_thr):
     return matches
 
 
-def iterative_assigment(tracks, dets_high, dets_low, dets_del_high, match_thr, penalty_p, penalty_q,
+def iterative_assignment(tracks, dets_high, dets_low, dets_del_high, match_thr, penalty_p, penalty_q,
                         reduce_step, frame_id, d_t=3):
     # Initialization
     matches = []
