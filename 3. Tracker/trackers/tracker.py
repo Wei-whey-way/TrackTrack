@@ -62,9 +62,9 @@ class Tracker(object):
         # ==============================================================================================================
         # Association between (tracked and lost tracks) & (high confidence detections)
         dets = dets_high + dets_low + dets_del_high
-        matches, u_tracks, u_dets = iterative_assigment(tracked_lost, dets_high, dets_low, dets_del_high,
-                                                        self.args.match_thr, self.args.penalty_p, self.args.penalty_q,
-                                                        self.args.reduce_step, self.frame_id)
+        matches, u_tracks, u_dets = iterative_assignment(tracked_lost, dets_high, dets_low, dets_del_high,
+                                                         self.args.match_thr, self.args.penalty_p, self.args.penalty_q,
+                                                         self.args.reduce_step, self.frame_id)
 
         # Update matched tracks
         for t, d in matches:
@@ -79,9 +79,9 @@ class Tracker(object):
         dets_high_left = [dets[i] for i in u_dets if i < len(dets_high)]
 
         # Association between (new tracks) & (left high confidence detections)
-        matches, u_tracks, u_dets = iterative_assigment(new, dets_high_left, [], [], self.args.match_thr,
-                                                        self.args.penalty_p, self.args.penalty_q,
-                                                        self.args.reduce_step, self.frame_id)
+        matches, u_tracks, u_dets = iterative_assignment(new, dets_high_left, [], [], self.args.match_thr,
+                                                         self.args.penalty_p, self.args.penalty_q,
+                                                         self.args.reduce_step, self.frame_id)
 
         # Update matched tracks
         for t, d in matches:
