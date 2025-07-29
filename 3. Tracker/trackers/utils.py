@@ -77,8 +77,8 @@ def conf_distance(tracks, dets):
 
 def get_prev_box(history, frame_id, delta_t):
     # Try
-    for _ in range(delta_t):
-        target_key = frame_id - delta_t
+    for i in range(1, delta_t+1):
+        target_key = frame_id - i
         if target_key in history.keys():
             return history[target_key][0]
 
