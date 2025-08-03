@@ -1,6 +1,22 @@
 import lap
 import numpy as np
-from cython_bbox import bbox_overlaps
+
+
+def bbox_overlaps(a_x1y1x2y2, b_x1y1x2y2):
+    num_a = a_x1y1x2y2.shape[0]
+    num_b = b_x1y1x2y2.shape[0]
+    overlaps = np.zeros((num_a, num_b))
+
+    for n_b in range(num_b):
+        box_area = (b_x1y1x2y2[n_b, 2] - b_x1y1x2y2[n_b, 0] + 1) * (b_x1y1x2y2[n_b, 3] - b_x1y1x2y2[n_b, 1] + 1)
+        for n_a in range(num_a):
+            iw = min(a_x1y1x2y2[n_a, 2], b_x1y1x2y2[n_b, 2]) - max(a_x1y1x2y2[n_a, 0], b_x1y1x2y2[n_b, 0]) + 1
+            if iw > 0:
+                ih = min(a_x1y1x2y2[n_a, 3], b_x1y1x2y2[n_b, 3]) - max(a_x1y1x2y2[n_a, 1], b_x1y1x2y2[n_b, 1]) + 1
+                if ih > 0:
+                    ua = (a_x1y1x2y2[n_a, 2] - a_x1y1x2y2[n_a, 0] + 1) * (a_x1y1x2y2[n_a, 3] - a_x1y1x2y2[n_a, 1] + 1) + box_area - iw * ih
+                    overlaps[n_a, n_b] = iw * ih / ua
+    return overlaps
 
 
 def find_deleted_detections(dets, dets_95):
