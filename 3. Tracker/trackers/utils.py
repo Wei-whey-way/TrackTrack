@@ -75,12 +75,11 @@ def conf_distance(tracks, dets):
     return conf_dist
 
 
-def get_prev_box(history, frame_id, delta_t):
+def get_prev_box(history, frame_id, dt):
     # Try
-    for _ in range(delta_t):
-        target_key = frame_id - delta_t
-        if target_key in history.keys():
-            return history[target_key][0]
+    target_key = frame_id - dt
+    if target_key in history.keys():
+        return history[target_key][0]
 
     # If there are no recent observation
     return history[max(history.keys())][0]
