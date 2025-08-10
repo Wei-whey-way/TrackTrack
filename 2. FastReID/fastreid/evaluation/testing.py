@@ -3,7 +3,7 @@ import logging
 import pprint
 import sys
 from collections import OrderedDict
-from collections.abc import Mapping
+from collections.abc import Mapping # Updated import to collections.abc for compatibility with Python 3.10+
 
 import numpy as np
 from tabulate import tabulate
