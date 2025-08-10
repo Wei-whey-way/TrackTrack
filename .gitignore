@@ -1,2 +1,5 @@
-dataset/
-Others/
+outputs.zip
+1. YoloX/rf-detr-base.pth
+1. YoloX/weights
+2. FastReID/weights
+outputs/2. det_feat/
