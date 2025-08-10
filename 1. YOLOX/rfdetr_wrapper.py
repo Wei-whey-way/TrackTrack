@@ -19,14 +19,14 @@ class RFDETRWrapper(nn.Module):
         self.model = RFDETRBase()
         self.to_pil = transforms.ToPILImage() #Need image to be in PIL format
         self.resize = transforms.Resize((560,560))
-        self.to_tensor = transforms.ToTensor() #See whther PIL can change to CHW (ch height width) dimensions instead
+        self.to_tensor = transforms.ToTensor() #See whether PIL can change to CHW (ch height width) dimensions instead
 
     def forward(self, images):
         results_batch = []
         device = "cuda" if torch.cuda.is_available() else "cpu"
 
         print('Debugging images:', images.size())
-        return 
+         
         # images = [self.to_tensor(self.resize(self.to_pil(img.cpu()))) for img in images]
         pil_images = [
             self.resize(self.to_pil(img.cpu())).convert("RGB")
@@ -43,8 +43,6 @@ class RFDETRWrapper(nn.Module):
         #Get detections in YOLOX format
         for detections in detection_list:
             print('Check for type detections', type(detections), detections)
-
-            
             
             # boxes = np.array(detections.xyxy, dtype=np.float32)
             # confidence = np.array(detections.confidence, dtype=np.float32)

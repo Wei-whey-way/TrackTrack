@@ -120,6 +120,8 @@ def run():
         path_in = result_folder + '/' + str(result_file)
         path_out = result_folder + '_post/' + str(result_file)
 
+        # print('Debugging', result_folder, path_in, path_out)
+
         # Link
         if 'Dance' in args.dataset:
             linker = AFLink(path_in=path_in, path_out=path_out, model=model, dataset=aflink_dataset,
@@ -128,6 +130,7 @@ def run():
 
         # Gaussian Interpolation
         if 'MOT' in args.dataset:
+            # print('Debugging path_in:', path_in)
             gb_interpolation(path_in, path_out, interval=30, tau=12)
 
     # Evaluation

@@ -122,11 +122,15 @@ def main(exp, args, num_gpu):
     # print('Predictions class_id:', predictions.class_id)
 
     #Create dictionary of dictionary to match original output
-    output_dict = defaultdict(dict)
+    output_dict = dict()
 
     for mot_id, img_paths in mot_groups.items():
         print('Processing MOT ID:', mot_id)
         #Create a list to hold all predictions for this mot_id
+
+        #Initialise dictionary for this mot_id
+        if mot_id not in output_dict:
+            output_dict[mot_id] = dict()
 
         for path in img_paths:
             # Extract frame number from filename
@@ -144,13 +148,11 @@ def main(exp, args, num_gpu):
             # print('Predictions class_id:', predictions.class_id)
             output_dict[mot_id][frame_num] = np.array(predictions.xyxy, dtype=np.float32)
     
-    print('output')
-    for i in output_dict:
-        # print(i, output_dict[i])
-        for j in output_dict[i]:
-            print('\t', output_dict[i][j])
-
-
+    # print('output')
+    # for i in output_dict:
+        ## print(i, output_dict[i])
+        # for j in output_dict[i]:
+            # print('\t', output_dict[i][j])
 
     # evaluator = DetEvaluator(args=args, dataloader=val_loader, img_size=exp.test_size, conf_thresh=exp.test_conf,
                             #  nms_thresh=exp.nmsthre, num_classes=exp.num_classes,)

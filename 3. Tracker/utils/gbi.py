@@ -57,7 +57,13 @@ def gradient_boosting_smooth(input_, tau):
 
 
 def gb_interpolation(path_in, path_out, interval, tau):
+    # print('Debugging path_in:', path_in)
     input_ = np.loadtxt(path_in, delimiter=',')
+
+    #Skip if no data (task 3)
+    if input_.size == 0:
+        print(f"No data found in {path_in}. Skipping interpolation.")
+        return
     li_result = linear_interpolation(input_, interval)
     gbi_result = gradient_boosting_smooth(li_result, tau)
     np.savetxt(path_out, gbi_result, fmt='%d,%d,%.2f,%.2f,%.2f,%.2f,%.2f,%d,%d,%d')

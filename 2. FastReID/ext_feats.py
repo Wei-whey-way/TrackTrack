@@ -50,7 +50,10 @@ if __name__ == "__main__":
 
             # Read image
             if 'MOT' in args.data_path:
-                img = cv2.imread(args.data_path + vid_name + '/img1/%06d.jpg' % frame_id)
+
+                # print('Hello', int(frame_id), type(int(frame_id)))
+                # img = cv2.imread(args.data_path + vid_name + '/img1/%06d.jpg' % frame_id) #Original line for task 2
+                img = cv2.imread(args.data_path + vid_name + '/img1/%06d.jpg' % int(frame_id)) #Change for task 3
             else:
                 img = cv2.imread(args.data_path + vid_name + '/img1/%08d.jpg' % frame_id)
 

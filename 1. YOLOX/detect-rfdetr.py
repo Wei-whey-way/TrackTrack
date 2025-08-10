@@ -84,9 +84,9 @@ def main(exp, args, num_gpu):
 
     # model = exp.get_model() #Original line
     model = RFDETRWrapper() #Replace with rfdetr
-    torch.cuda.set_device(rank)
-    model.cuda(rank)
-    model.eval()
+    # torch.cuda.set_device(rank)
+    # model.cuda(rank)
+    # model.eval()
 
     # if not args.speed and not args.trt:
     #     ckpt_file = args.ckpt

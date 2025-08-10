@@ -127,6 +127,12 @@ def evaluate(args, trackers_to_eval, dataset):
 
     # Set configuration
     evaluator = trackeval.Evaluator(eval_config)
+    
+    #Skip if no data (task 3)
+    if dataset_config is None:
+        print('No dataset found for evaluation.')
+        return
+    
     dataset_list = [trackeval.datasets.MotChallenge2DBox(dataset_config)]
     metrics_list = [trackeval.metrics.HOTA(), trackeval.metrics.CLEAR(), trackeval.metrics.Identity()]
     res, _ = evaluator.evaluate(dataset_list, metrics_list)

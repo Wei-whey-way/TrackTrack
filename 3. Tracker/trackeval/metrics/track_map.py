@@ -219,8 +219,8 @@ class TrackMAP(_BaseMetric):
             tps = np.logical_and(dt_m != -1, np.logical_not(dt_ig))
             fps = np.logical_and(dt_m == -1, np.logical_not(dt_ig))
 
-            tp_sum = np.cumsum(tps, axis=1).astype(dtype=np.float64)
-            fp_sum = np.cumsum(fps, axis=1).astype(dtype=np.float64)
+            tp_sum = np.cumsum(tps, axis=1).astype(dtype=np.float64) #Replaced np.float_ with np.float64
+            fp_sum = np.cumsum(fps, axis=1).astype(dtype=np.float64) #Replaced np.float_ with np.float64
 
             for iou_thr_idx, (tp, fp) in enumerate(zip(tp_sum, fp_sum)):
                 tp = np.array(tp)
